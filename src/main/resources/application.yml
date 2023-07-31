@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: auth-server-test
+  datasource:
+    url: jdbc:sqlserver://127.0.0.1;database=AUTHENTICATION;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: 123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        hbm2ddl.auto: update
+        dialect: org.hibernate.dialect.SQLServer2016Dialect
+        format_sql: true
+server:
+  port: 8081
