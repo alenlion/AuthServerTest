@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: authentication-server
+  datasource:
+    url: jdbc:sqlserver://20.10.10.53\SQL2019;database=AUTHENTICATION;encrypt=true;trustServerCertificate=true;
+    username: kalem
+    password: Kalem1453
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    
+    show-sql: true
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        hbm2ddl.auto: update
+        dialect: org.hibernate.dialect.SQLServer2016Dialect
+        format_sql: true
+
+

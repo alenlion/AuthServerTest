@@ -5,7 +5,11 @@ import com.kalem.authservertest.user.service.UserCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Rayan Aksu
@@ -13,10 +17,21 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping( value = "/user", method = RequestMethod.OPTIONS )
+//@RequestMapping( value = "/user" )
 @RequiredArgsConstructor
 public class UserController {
     private final UserCrudService userCrudService;
+
+    @RequestMapping( "/user" )
+    public UserDto getUserDetailsAfterLogin( Authentication authentication ) {
+        UserDto user = userCrudService.findFirstByUsername( authentication.getName() );
+        if ( user != null ) {
+            return user;
+        } else {
+            return null;
+        }
+
+    }
 
     @PostMapping( "/register" )
     public ResponseEntity<String> registerUser( @RequestBody UserDto user ) {
